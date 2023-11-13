@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Схема автоматизації</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="bg">
+            <div class="btn"></div>
+        </div>
+        <div class="popup">
+            <div class="popup_container">
+                <div class="close"><span>&#10006;</span></div>
+                <div class="object_container">
+                    <div class="settings_btns">
+                        <div class="options_btn">ЗАДАТИ ЗНАЧЕННЯ</div>
+                        <div class="start_btn">СТАРТ</div>
+                        <div class="stop_btn">СТОП</div>
+                    </div>
+                    <div class="object">
+                        <div class="sensor_item">
+                            <div class="level_sensor sensor">
+                                <span class="sensor1">0.00</span> мм
+                            </div>
+                            <div class="light"></div>
+                        </div>
+                        <div class="sensor_item">
+                            <div class="gas_consumption_out_sensor sensor">
+                                <span class="sensor2">0.00</span>т/с
+                            </div>
+                            <div class="light"></div>
+                        </div>
+                        <div class="sensor_item">
+                            <div class="water_temperature_in_sensor sensor">
+                                <span class="sensor3">0.00</span>К
+                            </div>
+                            <div class="light"></div>
+                        </div>
+                        <div class="sensor_item">
+                            <div class="gas_temperature_in_sensor sensor">
+                                <span class="sensor4">0.00</span> K
+                            </div>
+                            <div class="light"></div>
+                        </div>
+                    </div>
+                    <div class="canvas">
+                        <div class="canvas_container">
+                            <div class="scale_nums">
+                                <div class="num">1000</div>
+                                <div class="num">900</div>
+                                <div class="num">800</div>
+                                <div class="num">700</div>
+                                <div class="num">600</div>
+                                <div class="num">500</div>
+                                <div class="num">400</div>
+                                <div class="num">300</div>
+                                <div class="num">200</div>
+                                <div class="num">100</div>
+                                <div class="num">0</div>
+                            </div>
+                            <div class="scales">
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                                <div class="scales_container">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <canvas id="canvas" width="500px" height="300px"></canvas>
+                        </div>
+                        <div class="timer">
+                            Таймер - <span>0:0:0</span>
+                        </div>
+                        <div class="lines">
+                            <div class="line line1">
+                                <div></div>
+                                <p>рівень</p>
+                                <div class="settings">&#8801;</div>
+                            </div>
+                            <div class="line line2">
+                                <div></div>
+                                <p>витрата газу на виході</p>
+                                <div class="settings">&#8801;</div>
+                            </div>
+                            <div class="line line3">
+                                <div></div>
+                                <p>температура води на вході</p>
+                                <div class="settings">&#8801;</div>
+                            </div>
+                            <div class="line line4">
+                                <div></div>
+                                <p>температура газу на вході</p>
+                                <div class="settings">&#8801;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="options_popup">
+            <div class="options_popup_container">
+                <div class="close"><span>&#10006;</span></div>
+                <form>
+                    <div class="item">
+                        <p>Рівень:</p>
+                        <div class="item_container">
+                            <input type="number" class="level" placeholder="норма: 900" required>
+                            <p class="value">мм</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <p>Витрата газу на виході:</p>
+                        <div class="item_container">
+                            <input type="number" step="0.1" class="gas_consumption_out" placeholder="норма: 0.5" required>
+                            <p class="value">т/с</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <p>Температура води на вході:</p>
+                        <div class="item_container">
+                            <input type="number" class="water_temperature_in" placeholder="норма: 288" required>
+                            <p class="value">K</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <p>Температура газу на вході:</p>
+                        <div class="item_container">
+                            <input type="number" class="gas_temperature_in" placeholder="норма: 338" required>
+                            <p class="value">К</p>
+                        </div>
+                    </div>
+                    <input type="submit" class="submit" value="ЗАСТОСУВАТИ">
+                </form>
+            </div>
+        </div>
+        <div class="level_popup">
+            <div class="level_popup_container">
+                <div class="close"><span>&#10006;</span></div>
+                <p>Рівень</p>
+                <div class="canvas">
+                    <div class="canvas_container">
+                        <div class="scale_nums">
+                            <div class="num">2000</div>
+                            <div class="num">1800</div>
+                            <div class="num">1600</div>
+                            <div class="num">1400</div>
+                            <div class="num">1200</div>
+                            <div class="num">1000</div>
+                            <div class="num">800</div>
+                            <div class="num">600</div>
+                            <div class="num">400</div>
+                            <div class="num">200</div>
+                            <div class="num">0</div>
+                        </div>
+                        <div class="scales">
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                        </div>
+                        <canvas id="canvas1" width="500px" height="300px"></canvas>
+                        <div class="sensor_item">
+                            <div class="level_sensor sensor">
+                                <span class="sensor1">0.00</span> мм
+                            </div>
+                            <div class="light light1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="consumption_popup">
+            <div class="consumption_popup_container">
+                <div class="close"><span>&#10006;</span></div>
+                <p>Витрата газу на виході</p>
+                <div class="canvas">
+                    <div class="canvas_container">
+                        <div class="scale_nums">
+                            <div class="num">1</div>
+                            <div class="num">0.9</div>
+                            <div class="num">0.8</div>
+                            <div class="num">0.7</div>
+                            <div class="num">0.6</div>
+                            <div class="num">0.5</div>
+                            <div class="num">0.4</div>
+                            <div class="num">0.3</div>
+                            <div class="num">0.2</div>
+                            <div class="num">0.1</div>
+                            <div class="num">0</div>
+                        </div>
+                        <div class="scales">
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                        </div>
+                        <canvas id="canvas2" width="500px" height="300px"></canvas>
+                        <div class="sensor_item">
+                            <div class="gas_consumption_out_sensor sensor">
+                                <span class="sensor2">0.00</span>т/с
+                            </div>
+                            <div class="light light1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="temperature1_popup">
+            <div class="temperature1_popup_container">
+                <div class="close"><span>&#10006;</span></div>
+                <p>Температура води на вході</p>
+                <div class="canvas">
+                    <div class="canvas_container">
+                        <div class="scale_nums">
+                            <div class="num">500</div>
+                            <div class="num">450</div>
+                            <div class="num">400</div>
+                            <div class="num">350</div>
+                            <div class="num">300</div>
+                            <div class="num">250</div>
+                            <div class="num">200</div>
+                            <div class="num">150</div>
+                            <div class="num">100</div>
+                            <div class="num">50</div>
+                            <div class="num">0</div>
+                        </div>
+                        <div class="scales">
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                        </div>
+                        <canvas id="canvas3" width="500px" height="300px"></canvas>
+                        <div class="sensor_item">
+                            <div class="water_temperature_in_sensor sensor">
+                                <span class="sensor3">0.00</span>К
+                            </div>
+                            <div class="light light1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="temperature2_popup">
+            <div class="temperature2_popup_container">
+                <div class="close"><span>&#10006;</span></div>
+                <p>Температура газу на вході</p>
+                <div class="canvas">
+                    <div class="canvas_container">
+                        <div class="scale_nums">
+                            <div class="num">500</div>
+                            <div class="num">450</div>
+                            <div class="num">400</div>
+                            <div class="num">350</div>
+                            <div class="num">300</div>
+                            <div class="num">250</div>
+                            <div class="num">200</div>
+                            <div class="num">150</div>
+                            <div class="num">100</div>
+                            <div class="num">50</div>
+                            <div class="num">0</div>
+                        </div>
+                        <div class="scales">
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                            <div class="scales_container">
+                                <span></span>
+                            </div>
+                        </div>
+                        <canvas id="canvas4" width="500px" height="300px"></canvas>
+                        <div class="sensor_item">
+                            <div class="gas_temperature_in_sensor sensor">
+                                <span class="sensor4">0.00</span> K
+                            </div>
+                            <div class="light light1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
